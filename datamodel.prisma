@@ -9,9 +9,9 @@ type User {
   followers: [User!]! @relation(name: "FollowRelation")
   posts: [Post!]!
   likes: [Like!]!
-  Comments : [Comment!]!
+  Comments: [Comment!]!
   rooms: [Room!]!
-  loginSecret: String!
+  loginSecret: String
 }
 
 type Post {
@@ -19,9 +19,9 @@ type Post {
   location: String
   caption: String!
   user: User!
-  files : [File!]!
+  files: [File!]!
   likes: [Like!]!
-  Comments : [Comment!]!
+  Comments: [Comment!]!
 }
 
 type Like {
@@ -39,19 +39,19 @@ type Comment {
 
 type File {
   id: ID! @unique
-  url : String!
+  url: String!
   post: Post!
 }
 
-type Room{
+type Room {
   id: ID! @unique
   participants: [User!]!
   messages: [Message!]!
 }
 
-type Message{
+type Message {
   id: ID! @unique
-  text: String! 
+  text: String!
   from: User! @relation(name: "From")
   to: User! @relation(name: "To")
   room: Room!
