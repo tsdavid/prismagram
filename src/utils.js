@@ -1,6 +1,6 @@
-import dotenv from "dotenv";
-import path from "path";
-dotenv.config ({path: path.resolve(__dirname, ".env")});
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config ({path: path.resolve (__dirname, '.env')});
 
 import {adjectives, nouns} from './words';
 import nodemailer from 'nodemailer';
@@ -11,14 +11,12 @@ export const generateSecret = () => {
   return `${adjectives[randomNumer]} ${nouns[randomNumer]}`;
 };
 
-
-
 const sendMail = email => {
   const options = {
     auth: {
       api_user: process.env.SENDGRID_USERNAME,
-      api_key: process.env.SENDGRID_PASSWORD
-    }
+      api_key: process.env.SENDGRID_PASSWORD,
+    },
   };
   const client = nodemailer.createTransport (sgTransport (options));
   return client.sendMail (email);
@@ -26,10 +24,10 @@ const sendMail = email => {
 
 export const sendSecretMail = (adress, secret) => {
   const email = {
-    from: "tsdavid@naver.com",
+    from: 'tsdavid@naver.com',
     to: adress,
-    subject: "Login Secret for Prismagram",
-    html: `Hello! Your login secret is ${secret}.<br/>Copy paste on the app/website to log in`,
+    subject: 'Login Secret for Prismagram',
+    html: `Hello! Your login secret is <strong>${secret}</strong>.<br/>Copy paste on the app/website to log in`,
   };
   return sendMail (email);
 };
